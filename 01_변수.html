@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수 선언</title>
+    <script>
+        //  변수는 var라는 키워드를 사용하여 선언함
+        //  var 변수명 = 값;
+        //  변수명의 첫 글자는 숫자는 안됨
+        //  예약어(키워드)는 변수명으로 사용할 수 없음
+        //  특수문자는 _(언더바)와 $ 만 허용됨 
+        //  변수명 사이에 공백도 사용할 수 없음 
+        //  두 단어 이상으로 된 변수명은 두번째 단어부터는 첫글자를 대문자로 표시함(카멜표기법)
+        //  변수에는 마지막에 저장한 값 1개만 남아있음 
+        //  var는 전역변수(전지역에서 사용) 선언할 때 사용함
+        //  함수내부에서 선언하면 지역변수로 사용됨 
+
+        var num = 10        // 숫자값
+        var str = "홍길동"  // 문자값(반드시 따옴표로, 작은 따옴표도 상관없음)
+        var bool = true     // 논리값(true, false)
+        num = 20
+        str = "아무개"
+        bool = false
+        document.write(num+" "+str+" "+bool) // 브라우저에 출력
+        console.log(num, str, bool) // 개발자 도구에서 확인가능 
+        // alert(num+" "+str+" "+bool) // 경고창으로 출력되며 ,콤마로 쓰게되면 뒤에 str은 출력되지 않는다. 
+
+        document.write("<br>")
+
+        // 상수 선언 : 변하지 않는 값을 저장하고자 할때 사용 
+        // const 상수명  = 값; 
+        const kim = "김"
+        // kim = "박"  // 중간에 값이 변경되면 오류 발생함 
+        document.write(kim)
+
+        document.write("<br>")
+
+        // let(블록변수) 
+        let park = "박"
+        park = "이"
+        document.write(park+"<br>")
+
+        let choi = "최"
+        {
+            let choi = "최최"         
+            document.write(choi+"<br>")
+        }
+        document.write(choi)
+
+    </script> 
+</head>
+<body>
+
+    
+    
+</body>
+</html>

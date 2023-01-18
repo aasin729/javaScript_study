@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비교연산자</title>
+</head>
+<body>
+
+    <script>
+        // 크다, 초과 :  >
+        // 그거나 같다, 이상, 이후 : >= 
+        // 작다, 미만 :  <
+        // 작거나 같다, 이하, 이전 : <= 
+        // 같다 : == (===)
+        // 다르다 : !=  (!==)
+        // 비교식의 결과 값은 true 또는 false 이다.
+        
+        var x = 100, y = 200, x = "100"
+        var result = x > y 
+        document.write(result+"<br>") // false
+
+        result = x < y
+        document.write(result+"<br>") // true
+
+        result = x >= z
+        document.write(result+"<br>") // true
+        
+        result = x <= z
+        document.write(result+"<br>") // true
+
+        result = x == z
+        document.write(result+"<br>") // true
+
+        result = x === z
+        document.write(result+"<br>") // false
+
+        result = x != z
+        document.write(result+"<br>") // false
+
+        result = x !== z
+        document.write(result+"<br>") // true
+
+    </script>
+    
+</body>
+</html>

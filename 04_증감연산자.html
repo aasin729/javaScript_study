@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>증감연산자</title>
+</head>
+<body>
+
+    <script>
+        var x = 100;
+        var y = 200;
+        // x = x + 1;
+        ++x 
+        ++x
+        // y = y - 1;
+        --y
+        --y
+        document.write(x+", "+y+"<br>")
+
+        var a = 1;
+        var b = 10; 
+        var result = a++        // result = ++a
+        // result = a   :1        // a = a+1         :2
+        // a = a+1      :2        // result = a      :2
+        // +가 뒤에 있으면현재 가지고 있는 a변수 1이라는 값이 
+        // result에 먼저 대입 되기 때문에 출력은 1이 된다
+        document.write(result+" "+a)
+
+
+    </script>
+    
+</body>
+</html>

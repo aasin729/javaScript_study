@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>템플릿 문자열(모던자바스크립트,ES6) 사용하기</title>
+    <script>
+        var hong = "홍길동"
+        var num = 123
+        var src = "./img/2.jpg"
+        document.write(`${hong}${num}입니다.<br>`)
+        document.write(`${hong}은 아래 사진을 ${num}장 갖고 있습니다.<br><img src="${src}" alt="">`)
+        document.write('<br>')
+        document.write(hong+'은 아래 사진을'+ num +'장 갖고 있습니다.<br><img src="'+src+'" alt="">')
+
+        let pi = 3.14159265;
+        let radius = 10;
+
+        // console.log('둘레 :' + +2 * pi * radius)
+        // console.log('넓이 : ' + pi * radius * radius)
+        console.log(`둘레 : ${2 * pi * radius}`)
+        console.log(`넓이 : ${pi * radius * radius}`)
+
+    </script>
+</head>
+<body>
+
+    
+</body>
+</html>

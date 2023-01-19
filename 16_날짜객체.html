@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날짜 객체 생성 new Date()</title>
+</head>
+<body>
+
+    <p id="demo">2023년 1월 19일 12시 10분 5초</p>
+
+    <form action="">
+        <h2>생년월일</h2>
+        <p>
+            Year : <input type="text" id="year">
+        </p>
+        <p>
+            Month : <input type="text" id="month">
+        </p>
+        <p>
+            Day : <input type="text" id="day">
+        </p>    
+    </form>
+    <p id="survival"></p>
+
+    <script>
+        var now = new Date()
+        var year = now.getFullYear()    // 연도
+        var month = now.getMonth()+1    // 월 (1월이 0)
+        var day = now.getDate()         // 일
+        var weekday = now.getDay()      // 요일 (0번이 일요일)
+        var hour = now.getHours()       // 시간 
+        var minu = now.getMinutes()     // 분 
+        var seco = now.getSeconds()     // 초
+
+        switch(weekday){
+            case 0 : weekday = "일요일"; break;
+            case 1 : weekday = "월요일"; break;
+            case 2 : weekday = "화요일"; break;
+            case 3 : weekday = "수요일"; break;
+            case 4 : weekday = "목요일"; break;
+            case 5 : weekday = "금요일"; break;
+            case 6 : weekday = "토요일"; break;
+        }
+        document.getElementById('demo').textContent = `${year}년 ${month}월 ${day}일 
+        ${weekday} ${hour}시 ${minu}분 ${seco}초` 
+
+</script>
+
+</body>
+</html>

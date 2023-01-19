@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버블정렬</title>
+</head>
+<body>
+
+    <script>
+        var score = [40, 10, 8, 90, 58, 19, 80]
+        // 자료갯수 : 7개
+        // 1차 비교횟수 : 6번 (제일작은 1개 수가 맨 마지막으로 이동)
+        // 2차 비교횟수 : 5번 (제일작은 2개 수는 비교에서 제외) 
+        // 3차 비교횟수 : 4번 (제일작은 3개 수는 비교에서 제외)
+        // 4차 비교횟수 : 3번 (제일작은 4개 수는 비교에서 제외)
+        // 5차 비교횟수 : 2번 (제일작은 5개 수는 비교에서 제외)
+        // 6차 비교횟수 : 1번 (제일작은 6개 수는 비교에서 제외)
+
+        // 내림차순 정렬
+        var temp;
+        for (let i=score.length-1; i>0; i--){
+            for(let j=0; j<i; j++){
+                if( score[j]<score[j+1]){   // if( score[j]>score[j+1]) 오름차순
+                    temp = score[j+1]       // if( score[j]<score[j+1]) 내림차순
+                    score[j+1] = score[j]
+                    score[j] = temp 
+                }
+            }
+        }   
+        document.write(score)
+
+
+    </script>
+    
+</body>
+</html>

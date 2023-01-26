@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체(Object)</title>
+    <style> 
+        table { border-collapse: collapse; width: 500px; margin: 50px auto;}
+        td,th { text-align: center; padding: 10px 0;}
+    </style>
+</head>
+<body>
+
+    <!-- 
+        사용자 정의객체 : 사용자가 만드는 객체
+        내장객체 : Array(), Date(), Math(), Object()
+        브라우저객체(BOM : Browser Object Model) : 윈도우에서 사용하는 객체
+        문서객체(DOM : Document Object Model) : html 문서에서 사용하는 객체(태그들)    
+     -->
+
+     <script>
+        // 1. 리터럴 객체 정의 
+        // var 객체명 = { 
+        //     속성명 : 속성값,
+        //     메서드 : function() {실행문; return}  
+        // } 
+
+        // 2. 객체 생성자로 정의 => 많이 쓰이지는 않음.
+        // var 객체명 = new Object()
+        // 객체명.속성명 = 속성값
+        // 객체명.메서드() = function() {실행문; return}
+
+        // var stdName = [ '홍길동', '장나라', '김민수']
+        // var html = [ 80, 90, 90]
+        // var css = [ 100, 80, 80]
+        // var js = [ 70, 60, 80]
+        // for ( let i in stdName){
+        //     let avg = Math.round((html[i]+css[i]+js[i])/stdName.length)
+        //     document.write(`${stdName[i]} : html(${html[i]}),css(${css[i]}),
+        //     js(${js[i]}), 평균(${avg}) <br>`)
+        // }
+
+        var students = [
+            {
+                name : '홍길동',
+                html : 80,
+                css : 100,
+                js : 70,
+                avg : function(){
+                    return Math.round((this.html + this.css + this.js)/3) 
+                }
+            },
+            {
+                name : '장나라',
+                html : 90,
+                css : 80,
+                js : 60,
+                avg : function(){
+                    return Math.round((this.html + this.css + this.js)/3) 
+                }
+
+            },
+            {
+                name : '김민수',
+                html : 90,
+                css : 80,
+                js : 80,
+                avg : function(){
+                    return Math.round((this.html + this.css + this.js)/3) 
+                }
+            }
+        ]
+        // document.write(students[0].avg()) => 홍길동의 평균점수 출력
+
+        var table = "<table border='1'>"
+        table += "<tr>"
+        table += "<th>이름</th>"
+        table += "<th>html과목</th>"
+        table += "<th>css과목</th>"
+        table += "<th>js과목</th>"
+        table += "<th>평균</th>"
+        table += "</tr>"
+
+
+        for(let i in students){
+            table += `<tr>`
+            table += `<td>${students[i].name}</td>`
+            table += `<td>${students[i].html}점</td>`
+            table += `<td>${students[i].css}점</td>`
+            table += `<td>${students[i].js}점</td>`
+            table += `<td>${students[i].avg()}점</td>`
+            table += `</tr>`
+        }
+        table += "</table>"
+
+        document.write(table)
+     </script>
+
+
+</body>
+</html>

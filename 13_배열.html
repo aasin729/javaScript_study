@@ -8,9 +8,13 @@
 </head>
 <body>
     
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+
+
     <script>
         // 배열의 인덱스 번호는 0번부터 시작함
-        // var 배열명 = []              // 객체 리터럴 
+        // var 배열명 = [숫자, '문자', 논리값, 배열, 객체 ]  // 객체 리터럴 
         // var 배열명 = new Array()     // 배열객체 생성
 
         // var arr = [10, 20, 30, "홍길동", "김민수", true, false]
@@ -80,8 +84,104 @@
         
         var num = [10, 30, 5]
         document.write(Math.min.apply(null, num)+"<br>")
-        document.write(Math.max.apply(null, num))
+        document.write(Math.max.apply(null, num)+"<br>")
 
+
+
+        document.write('==========배열 메서드 공부하기=========<br>')
+
+        // 배열.toString() : 배열 값을 콤마로 구분된 문자열로 반환 
+        // console.log() 에서 확인할 것 
+
+        var frut = ["Banna", "Orange", "Apple","Mango","Lemon"]
+        
+        console.log(frut) 
+        console.log(frut.toString())
+
+       const demo1 =  document.getElementById('demo1')
+       const demo2 =  document.getElementById('demo2')
+
+        // 배열.join() : 배열값을 제시된 문자로 연결하여 하나의 문자열을 만든다.
+
+        document.write(frut.join(' - ') + '<br>')
+
+
+        // 배열.concat() : 두 배열을 결합함
+        var vegetable = ["배추", "양파", "감자", "무우"]
+        document.write(frut.concat(vegetable)+'<br>')
+
+        // 배열.push() : 배열의 맨 마지막에 요소를 추가함
+        vegetable.push('파')
+        document.write(vegetable + '<br>') 
+        vegetable.push('토마토')
+        document.write(vegetable + '<br>') 
+
+        // 배열.unshift() : 배열의 첫번째 요소를 추가함 
+        vegetable.unshift('상추')
+        document.write(vegetable + '<br>')
+
+        //배열.pop() : 배열의 마지막 요소를 삭제 
+        vegetable.pop()
+        document.write(vegetable + '<br>')
+        vegetable.pop()
+        document.write(vegetable + '<br>')
+
+        //배열.shift() : 배열의 첫번째 요소를 삭제
+        vegetable.shift()
+        document.write(vegetable + '<br>')
+
+        //***배열.splice(위치번호(인덱스번호), 삭제갯수, 추가값) : 
+        // 배열의 지정된 부분의 요소를 추가, 삭제, 수정할 수 있음
+
+        var alphabet = [ 'a', 'b', 'c', 'f']
+        // 4번째 요소로 'd'를 추가하시오. 
+        alphabet.splice(3, 0, 'd')
+        document.write(alphabet + '<br>')
+
+        // 0번째에서 3개(a,b,c)를 삭제하고 x, y, z를 추가하시오.
+        alphabet.splice(0, 3, 'x', 'y', 'z')
+        document.write(alphabet + '<br>') // x, y, z, d, f
+
+        //'f'를 'g'로 수정하시오.
+        //alphabet.indexOf('f') => 지정한 문자'f'의 인덱스 번호를 추출 
+        alphabet.splice(alphabet.indexOf('f'), 1, 'g')
+        document.write(alphabet + '<br>') 
+
+        // 'd'를 삭제하시오.
+        alphabet.splice(alphabet.indexOf('d'), 1)
+        document.write(alphabet + '<br>')
+
+
+        // ******* 배열.slice(시작인덱스번호, 끝인덱스번호+1): 배열을 분리함
+        var nume = [100, 200, 600, 400, 500]
+        // 1번요소부터 3번요소까지 분리하여 새로운 배열을 만드시오. 
+        var result1 =  nume.slice(1,4)
+        document.write(result1 + '<br>')
+        document.write(nume + '<br>')       //기본 배열은 그대로 유지됨 
+
+        // 1번 요소부터 마지막 요소까지 분리하여 새로운 매열을 만드시오.
+        var result2 = nume.slice(1)
+        document.write(result2+'<br>')
+
+        // 배열.reverse() : 배열을 역순으로 정렬함 
+        var result3 = nume.reverse()
+        document.write(result3+'<br>')
+        document.write(nume+'<br>')
+        // 기존 배열도 변경되는 메서드() : push, pop, shift, unshift,
+        // splice, reverse, sort
+
+        // 배열.sort() : 배열 요소들을 내림차순 또는 오름차순으로 정렬
+        function compare(a,b){
+              return a-b      // 오름차순
+          //  return b-a      // 내림차순 
+        }
+        var result4 = nume.sort(compare)
+        document.write(result4+'<br>')
+        document.write(nume+'<br>')
+
+         // 기존 배열도 변경되는 메서드() : push, pop, shift, unshift,
+         // splice, reverse, sort
+         // 기존 배열에 변화가 없는 메서드() : slice, join, concat,
     </script>
 
 </body>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM(Document Object Model</title>
+</head>
+
+<body>
+
+    <h1 id="irum">홍길동</h1>
+
+    <h2 class="kim">김민수</h2>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, ea consectetur molestiae voluptate similique
+        nobis explicabo atque sit quisquam alias assumenda illo ipsa quis, provident consequuntur tempore autem
+        temporibus delectus.Z</p>
+    
+    <p>프리이머리그</p>
+
+    <ul class="depth1">
+        <li class="kim">메뉴1</li>
+        <li>메뉴2</li>
+        <li>메뉴3</li>
+    </ul>
+
+
+    <script>
+        // 아이디 선택자 : document.getElementById('아이디명')  => 인덱스 번호 X
+        // 클래스 선택자[인덱스번호] : document.getElementsByClassName('클래스명') 
+        // 태그선택자[인덱스번호] : document.getElementsByTagName('태그명')
+
+        // let irum = document.getElementById('irum')
+        // let kim = document.getElementsByClassName('kim')
+        // let p = document.getElementsByTagName('p')
+        // let li = document.getElementsByTagName('li')
+        // irum.textContent = '메시'
+        // kim[0].textContent = '홀란드'
+        // kim[1].textContent = 'menu1'
+        // p[0].textContent = '손흥민'
+        // p[1].textContent = '챔피언스리그'     
+        // li[2].textContent = p[1].textContent 
+
+        // 요소.textContent : 요소안에 내용을 입력하거나, 요소 안에 있는 내용을 추출할 때 사용
+        // 요소.innerHTML : 요소안에 태그를 포함한 내용을 입력하거나, 태그를 포함한 내용을 추출할 때 사용
+        
+        // 다용도선택자 : document.querySelector('#아이디명', '.클래스명', '태그명')
+        let irum = document.querySelector('#irum')
+        let kim = document.querySelectorAll('.kim')
+        let p = document.querySelectorAll('p')
+        let li = document.querySelectorAll('li')
+
+        // let text = li[0].textContent 
+        // let awrap = `<a href="#">${text}</a>`
+        // li[0].innerHTML = awrap  
+
+        // depth1에 속해 있는 <li>안에 있는 내용을 <a>태그로 감싸시오.
+        for(let i in li){
+            let text = li[0].textContent
+            let awrap = `<a href="#">${text}</a>`
+            li[i].innerHTML = awrap
+        }
+        
+
+
+    </script>
+
+
+
+</body>
+
+</html>

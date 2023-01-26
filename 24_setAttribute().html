@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setAttrubute('속성명','속성값')</title>
+    <style>
+        .red {color: red;}
+        .font50 { font-size: 50px;}
+        .bgpink {background: pink;}
+    </style>
+</head>
+<body>
+    
+    <!-- 
+        setAttribute() : 태그(element, 요소)의 속성을 변경할때 사용
+     -->
+
+    <h1 class="red">홍길동</h1>
+    <img src="./img/1.jpg" alt="이미지1">
+    <button onclick="change()">클릭</button>
+
+     <script>
+           let elh1 = document.querySelector('h1')
+           let elimg = document.querySelector('img')
+           
+           function change(){
+            elh1.setAttribute('class','red font50 bgpink')
+            elimg.setAttribute('src', './img/2.jpg')
+            elimg.setAttribute('alt', '이미지2')
+           }
+   
+     </script>
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="#">
+        <input type="text" id="num1"> + <input type="text" id="num2"> = <span id="output"></span>
+        <p>
+            <button type="button" onclick="add()">계산하기</button> <!-- button 타입 기본형은 submit 임-->
+        </p>
+    </form>
+
+    <script>
+        function add(){
+           let num1 = parseInt(document.getElementById('num1').value)
+           let num2 = parseInt(document.getElementById('num2').value)
+
+           let sum = num1 + num2
+
+           document.getElementById('output').textContent = sum
+        }
+
+    </script>
+</body>
+</html>

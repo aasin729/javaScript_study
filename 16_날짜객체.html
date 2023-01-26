@@ -20,7 +20,8 @@
         </p>
         <p>
             Day : <input type="text" id="day">
-        </p>    
+        </p>
+        <button type="button" onclick="survivalClac()">살아온 날수 계산</button>    
     </form>
     <p id="survival"></p>
 
@@ -45,6 +46,32 @@
         }
         document.getElementById('demo').textContent = `${year}년 ${month}월 ${day}일 
         ${weekday} ${hour}시 ${minu}분 ${seco}초` 
+
+
+    function survivalClac(){
+
+       let year = parseInt(document.getElementById('year').value)
+       let month = parseInt(document.getElementById('month').value)-1
+       let day = parseInt(document.getElementById('day').value)
+
+        // 월은 항상 -1 해서 값을 입력함 
+        var myDday = new Date(year, month, day) 
+    
+        // getTime() : 1970년 1월 1일 부터 지정한 날짜까지 경과한 밀리초를 구해주는 함수
+        // 밀리초는 1초에 1000ms 
+        var today_mili = now.getTime()
+        today_mili = today_mili / 1000 /60 /60 /24 //날수 구하기  
+        console.log(today_mili)
+    
+        var myDday_mili = myDday.getTime() 
+        myDday_mili = myDday_mili/ 1000 /60 /60 /24
+    
+        var survival_day = Math.ceil(today_mili - myDday_mili) 
+        // Math.ceil()메서드 : 소수점 버림 
+        document.getElementById('survival').textContent = survival_day
+    }
+
+
 
 </script>
 

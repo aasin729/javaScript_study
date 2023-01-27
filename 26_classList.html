@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classList 속성</title>
+    <style>
+        .red{color: red;}
+        .green{color: green;}
+        .blue{color: blue;}
+        .bgcolor{background: pink;}
+    </style>
+</head>
+<body>
+    
+    <h1 onclick="bgtoggle()">홍길동</h1>
+    <button onclick="colorChange('red')">레드</button>
+    <button onclick="colorChange('green')">그린</button>
+    <button onclick="colorChange('blue')">블루</button>
+
+    <!-- 
+        선택자.classList = " " :  클래스 전부 삭제됨
+        선택자.classList = "클래스명" : 클래스 변경 
+        선택자.classList.add('클래스1', '클래스2',....) : 클래스 추가
+        선택자.classList.remove('클래스1', '클래스2',....) : 클래스 삭제
+        선택자.classList.toggle('클래스') : 클래스 추가 삭제 
+        선택자.classList.contains('클래스') : 클래스 유(true) 무(false) 판단
+     -->
+
+    <script>
+        let elh1 = document.querySelector('h1')
+        // elh1.classList = "blue"
+        function colorChange(color){
+            elh1.classList = ""
+            elh1.classList.add(color)  
+        }
+
+
+        function bgtoggle(){
+            // elh1.classList.toggle('bgcolor')
+            if( !elh1.classList.contains('bgcolor')){
+                elh1.classList.add('bgcolor')
+            }else{
+                elh1.classList.remove('bgcolor')
+            }
+        }
+
+        
+
+    </script>
+
+
+
+
+
+</body>
+</html>

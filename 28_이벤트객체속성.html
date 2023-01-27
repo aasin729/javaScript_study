@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #bt{padding: 50px; margin: 50px;}
+        #area{width: 300px; height: 300px; background: green;
+            margin: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button id="bt">버튼</button>
+    <div id="area">
+        여기에 마우스 왼쪽, 가운데, 오른쪽 버튼 클릭
+        <p></p>
+        <p></p>
+    </div>
+    
+    <!-- 
+        target : 이벤트를 발생시킨 객체를 반환
+        type : 이벤트의 이름을 반환
+        clientX : 이벤트가 발생한 X좌표값 반환(브라우저기준)
+        clientY : 이벤트가 발생한 Y좌표값 반환(브라우저기준)
+        screenX : 이벤트가 발생한 X좌표값 반환(모니터기준)
+        screenY : 이벤트가 발생한 Y좌표값 반환(모니터기준)
+        button : 0(마우스왼쪽), 1(가운데휠), 2(오른쪽) 반환
+     -->
+
+    <script>
+        var bt = document.querySelector("#bt")
+        var area = document.querySelector("#area")
+        var elp = document.querySelectorAll("#area > p")
+        bt.onclick = function(event){
+            area.style.background = "red"
+            area.style.color = "blue"
+            area.style.fontSize = "30px"
+            console.log(event.target)
+        }
+        area.addEventListener('mousedown', function(event){
+            console.log(event.button)
+            elp[0].textContent = event.screenX
+            elp[1].textContent = event.screenY
+        })
+        
+    </script>
+
+
+
+
+</body>
+</html>

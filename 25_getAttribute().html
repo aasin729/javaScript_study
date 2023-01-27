@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <!-- 
+        getAttribute('속성명') : 속성이 갖고 있는 현재값을 구함
+
+     -->
+
+    <h1 class="red">홍길동</h1>
+    <img src="./img/1.jpg" alt="이미지1">
+    <img src="./img/2.jpg" alt="이미지2">
+    <button onclick="change()">클릭</button>
+
+     <script>
+        let elh1 = document.querySelector('h1')
+        let elimg = document.querySelectorAll('img')
+        let elbtn = document.querySelector('button')
+        let prop = elh1.getAttribute('class')
+        // document.write(prop + '<br>')
+
+        elbtn.setAttribute('class', prop)
+
+        function change(){
+           let prop1 =  elimg[0].getAttribute('src')
+           let prop2 =  elimg[1].getAttribute('src')
+           elimg[0].setAttribute('src', prop2)
+           elimg[1].setAttribute('src', prop1)
+        }
+
+     </script>
+
+
+</body>
+</html>

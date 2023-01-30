@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브라우저객체</title>
+</head>
+<body style="height: 2000px; width: 3000px;">
+
+    <!-- 
+        종류 : navigator, location, screen, window, history 객체 
+
+        screen.width : 모니터 넓이(1920)
+        screen.height : 모니터 높이(1080)
+
+        screen.availWidth : 1920
+        screen.availHeight  : 1040 (하단 퀵런처 박스 높이 40px 제외)
+
+        window.innerWidth : 창틀 제외, 스크롤바 포함 
+        window.innerHeight : 창틀 제외, 스크롤바 포함 
+
+        window.outerWidth : 창틀 포함 
+        window.outerHeight
+
+        window.scrollY : 세로 스크롤바 위치값만 구함
+        window.scrollX : 가로 스크롤바 위치값만 구함
+        
+        *** 스크롤바의 위치값을 변경하려면 html 요소를 지목하여 변경해야 함
+        document.documentElement.scrollTop = '100' (세로 스크롤바 위치값 변경) 
+        document.documentElement.scrollLeft = '100' (가로 스크롤바 위치값 변경)
+
+        window.alert()              // window 객체명 생략가능
+        window.promp("", "")        // window 객체명 생략가능
+        window.open("새창에 들어올 문서의url", "윈도우이름", "창크기, 창위치")
+        window.close()
+
+        location.href = '문서의 url 주소'
+        location.reload() = 새로고침
+
+        history.forward() : 앞으로 이동
+        history.back() : 뒤로 이동
+
+        navigator.appName : 브라우저 이름
+        navigator.appVersion : 브라우저 버전
+        
+     -->
+
+     <script>
+
+        document.documentElement.scrollTop = '100' 
+        document.documentElement.scrollLeft = '100' 
+
+        window.onscroll = function(){
+            console.log(window.scrollY)
+            // console.log(window.scrollX)
+        }
+
+        window.open('popup.html', '', 'width=517, height=317, top=200, left=200')
+        
+
+     </script>
+
+
+
+
+</body>
+</html>

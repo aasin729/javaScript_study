@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 
+
+        parentNode : 선택된 요소의 부모 노드를 선택함
+        childNodes : 선택된 요소의 자식노드들을 선택함(공백포함, 인덱스번호)
+        children : 선택된 요소의 자식노드들을 선택함(인덱스번호)
+        firstChild : 첫 번째 자식 노드를 선택함(공백포함)
+        firstElementChild : 첫 번째 자식 노드를 선택함
+        lastChile : 마지막 자식 노드를 선택함(공백포함)
+        lastElementChild : 마지막 자식 노드를 선택함
+        nextSibling : 선택된 요소의 다음 형제 노드를 선택함(공백포함)
+        nextElementSibling : 선택된 요소의 다음 형제 노드를 선택함 
+        previousSibling : 선택된 요소의 이전 형제 노드를 선택함(공백포함) 
+        previousElementSibling : 선택된 요소의 이전 형제 노드를 선택함
+
+     -->
+    
+     <!-- nav#gnb>ul>li*3>ul>li*3 -->
+
+     <nav id="gnb">
+        <ul>
+            <li>내용1
+                <ul>
+                    <li>서브1</li>
+                    <li>서브2</li>
+                    <li>서브3(글자색을 빨간색으로 변경하기)</li>
+                </ul>
+            </li>
+            <li>내용2
+                <ul>
+                    <li>서브1</li>
+                    <li>서브2</li>
+                    <li>서브3</li>
+                </ul>
+            </li>
+            <li>내용3
+                <ul>
+                    <li>서브1</li>
+                    <li>서브2</li>
+                    <li>서브3</li>
+                </ul>
+            </li>
+        </ul>
+     </nav>
+
+     <script>   
+        let gnb = document.querySelector('#gnb')
+        // document.body.background ='red'
+        gnb.parentElement.style.background = 'red'
+        // gnb.childNodes[1].style.background = 'yellow'
+        gnb.children[0].style.background = 'yellow'
+
+        // gnb.firstElementChild.firstElementChild.style.color = 'red'
+        gnb.firstElementChild.firstElementChild.style.border = '1px solid blue'
+
+        gnb.firstElementChild.firstElementChild.
+        firstElementChild.lastElementChild.style.color = 'red'
+
+        // 내용2(nextElementSibling)의 둘째 자식 서브2의 글자색을 파란색으로 변경하시오.
+
+        gnb.firstElementChild.firstElementChild.nextElementSibling.
+        firstElementChild.firstElementChild.nextElementSibling.style.color = 'blue'
+        
+
+    </script>
+
+
+
+</body>
+</html>

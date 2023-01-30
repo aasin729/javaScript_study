@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body>
+
+    <!-- 
+        createElememt() : 요소를 생성하는 메서드
+        createTextNode() : 텍스트를 생성하는 메서드
+        appendChild() : 생성한 요소를 부모의 마지막 자식의 관계로 만들어주는 메서드 
+            부모.appendChild(생성한자식)
+        insertBefore() : 생성한 요소를 지정한 요소의 바로 앞(형제)에 추가하는 메서드
+            부모.insertBefore(생성한 자식, 지정한 형제요소)
+
+        removeChild() : 자식요소 삭제하기
+            부모.removeChild(자식요소)
+
+        removeAttribute('속성명') : 속성 삭제
+
+     -->
+
+     <!-- <h1>제목</h1> -->
+    
+    <button id="btn">생성</button>
+    <button id="rbtn">삭제</button>
+
+    <script>
+       let btn = document.querySelector('#btn')
+       let rbtn = document.querySelector('#rbtn')
+       let body = document.body
+       
+       rbtn.onclick = function(){
+            body.removeChild(body.firstElementChild)
+            body.removeChild(body.lastElementChild)
+       } 
+
+       btn.addEventListener('click', function(){
+           // document.body.innerHTML = '<div class ="box"><p>자바스크립트</p></div>'
+           let div = document.createElement('div') // <div><div>
+           let elp = document.createElement('p')   // <p><p>
+           let txt = document.createTextNode('자바스크립트') // 자바스크립트 
+           
+            elp.appendChild(txt)     // <p>자바스크립트</P>
+            div.appendChild(elp)   // <div><p>자바스크립트</p><div>
+            div.className = "box"   // <div class ="box"><p>자바스크립트</p></div>
+            body.appendChild(div)
+            div.removeAttribute('class')
+
+           let h1 = document.createElement('h1') // <h1>/<h1>
+           h1.textContent = '제목'  // <h1>제목<h1>
+           body.insertBefore(h1, btn)
+       })
+       
+    </script>
+    
+</body>
+</html>

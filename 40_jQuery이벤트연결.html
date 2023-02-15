@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <style>
+        #box { transition: all 0.5s;}
+        #box.on{background: green;}
+    </style>
+</head>
+<body>
+
+    <!-- 
+        
+        $('선택자').on('이벤트1 이벤트2 이벤트3',function(){
+
+        })
+
+        $('선택자').이벤트명(function(){
+
+        })
+
+        $('선택자').hover(
+            function(){},
+            function(){}
+        )
+
+     -->
+
+     <button>버튼</button>
+     <div id="box" style="width: 100px; height: 100px; border: 1px solid #000;">
+    </div>
+
+     <script>
+        $('button').click(function(){
+            $('body').css({
+                background : 'red'
+            })
+        })
+
+        // focus는 tab키 누르면 적용된다.
+        $('button').on('dblclick focus',function(){
+            $('body').css({
+                background : 'blue'
+            })
+        })
+
+        // $('#box').on('mouseover', function(){
+        //     $(this).addClass('on')
+        // })
+
+        // $('#box').on('mouseout', function(){
+        //     $(this).removeClass('on')
+        // })
+
+        // $('#box').on('mouseover mouseout', function(){
+        //     $(this).toggleClass('on')
+        // })
+
+        $('#box').hover(
+            function(){
+                $(this).addClass('on')
+            },
+            function(){
+                $(this).removeClass('on')
+            }
+        )
+     </script>
+    
+</body>
+</html>

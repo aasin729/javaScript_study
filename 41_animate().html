@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{box-sizing: border-box;}
+        .slideOuter{max-width: 640px; margin: 0 auto;}
+        .slideInner{position: relative; border: 1px solid #000; height: 328.8px;}
+        .slideInner .slide {position: absolute; top: 0; left: 0; width: 100%;}
+        .slideInner .slide img { width: 100%;}
+    </style>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+
+    <!-- 
+
+        $('선택자').animate({속성명:'속성값'}, 시간, 속도함수, 콜백함수)
+
+     -->
+
+    <div class="slideOuter">
+        <div class="slideInner">
+            <!-- div.slide.slide$*4 -->
+            <!-- 같은조건일땐 맨 마지막에 코딩한 부분이 맨 위에 올라옴  -->
+            <div class="slide slide1">
+                <img src="./img/car1.jpg" alt="">
+            </div>
+            <div class="slide slide2">
+                <img src="./img/car2.jpg" alt="">
+            </div>
+            <div class="slide slide3">
+                <img src="./img/car3.jpg" alt="">
+            </div>
+            <div class="slide slide4">
+                <img src="./img/car4.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+
+        $('.slideInner .slide').hide()
+        $('.slideInner .slide').eq(0).show()
+
+        var count = 0
+        var timer = setInterval(autoSlide, 1000)
+
+        function autoSlide(){
+            count++ 
+            if(count>3) count=0
+            $('.slideInner .slide').eq(count).fadeIn(300)
+            $('.slideInner .slide').eq(count).siblings().fadeOut(300)
+        }
+
+        $('.slideInner').hover(
+            function(){
+                clearInterval(timer)
+            },
+            function(){
+               timer =  setInterval(autoSlide, 1000)
+            }
+        )
+
+
+    </script>
+
+</body>
+</html>

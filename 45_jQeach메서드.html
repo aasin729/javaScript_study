@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <div>
+        <p>red</p>
+    </div>
+
+    <h1>
+        <p>blue</p>
+    </h1>
+
+        <p>green</p>
+
+        <ul>
+            <li>
+                <p>pink</p>
+            </li>
+            <li>
+                <p>brown</p>
+            </li>
+            <li>
+                <p>lime</p>
+            </li>
+            <li>
+                <p>orange</p>
+            </li>
+        </ul>
+
+
+        <!-- 
+            $('선택자').each(function(index, value){
+                index : 현재 접근하고 있는 요소의 인덱스 번호를 받음
+                value : 현재 접근하고 있는 요소 자체를 받음
+                $(this) : 현재 접근하고 있는 요소 자체를 가리킴
+            })
+         -->
+
+        <script>
+            // let elp = $('p')
+            // for ( let i in elp){
+            //     let color = elp[i].textContent
+            //     elp[i].style.background = color
+            // }
+
+            $('p').each(function(a, b){
+                console.log(a, b)
+                let color =  $(this).text()
+                $(this).css({
+                    background : color
+                })
+            })
+
+
+
+
+
+        </script>
+
+</body>
+</html>

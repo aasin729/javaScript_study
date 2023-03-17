@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지진해일 긴급대피장소</title>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box }
+        .box { max-width:500px; margin:0 auto }
+        table { width:100%; border-collapse:collapse }
+        th, td { border:1px solid #000; padding:10px  }
+        col:nth-child(1) { width:35% }
+        col:nth-child(2) { width:25% }
+        col:nth-child(3) { width:10% }
+        col:nth-child(4) { width:10% }
+        .pageNum { text-align:center }
+        .pageNum a { display:inline-block; padding:10px; margin:5px; background:blue; color:#fff }
+        .pageNum a.on { background:red }
+    </style>
+
+
+</head>
+<body>
+
+    <form>
+        <select name="" id="sido_name">
+            <option value="강원도">강원도</option>
+            <option value="충청북도">충청북도</option>
+        </select>
+        <button type="submit">조회</button>
+    </form>
+        <!-- <table>
+            <colgroup>
+                <col>
+                <col>
+            </colgroup>
+            <tr>
+                <th>주소 address</th>
+                <th>대피장소명 shel_nm</th>
+                <th>수용가능인원수 shel_av</th>
+                <th>대피소분류명 shel_div_type<th>
+                
+            </tr>
+            <tr>
+                <td>강원도 삼척시 정하동 28-1</td>
+                <td>정라마을회관뒤공터</td>
+                <td>100</td>
+                <td>공터</td>
+            </tr>
+        </table> -->
+        <div class="pageNum"></div>
+    
+        <script>
+            var vdata = []
+            getData()
+            function getData(){
+
+                $.ajax({
+                    type :'GET',
+                    url: 'https://apis.data.go.kr/1741000/TsunamiShelter3/getTsunamiShelter1List?serviceKey=KN6vnczbtan4yZ0ghwoYVBbm%2FdRRL2RNH42hi%2B%2BJXgBjeKhFZkKq6RppUs073o%2B%2BIEBMYCbIVCPo04t8u%2BG3Eg%3D%3D&pageNo=1&numOfRows=10&type=json',
+                    dataType:'json',
+                    success : function(rdata){
+                        // console.log(rdata.TsunamiShelter[1].row)
+                        vdata = rdata.TsunamiShelter[1].row
+                        console.log(vdata)
+                    },
+                    error : function(xhr){
+                        alert(xhr.status + "/" + xhr.errorText)
+                    }
+                })
+            }
+       
+            $('form').on('submit', function(){
+               let sido = $('#sido_name').val()
+               let newdata = vdata.filter(function(value){
+                return value.sido_name === sido 
+               })
+
+               console.log(newdata)
+                return false
+            })
+
+        // let table = `<table>`
+        //     table += `<colgroup><col><col></colgroup>`
+        //     table += `<tr><th>주소</th><th>대피장소명</th><th>수용가능인원</th><th>대피분류명</th></tr>`
+        //     data.map(function(value, index){
+        //         console.log(value, index)
+        //         table += `<tr>`
+        //         table += `<td>${value.address}</td>`
+        //         table += `<td>${value.shel_nm}</td>`
+        //         table += `<td>${value.shel_av}</td>`
+        //         table += `<td>${value.shel_div_type}</td>`
+        //         table += `</tr>`
+        //     })    
+        //     table += `</table>`
+
+        </script>
+
+
+
+</body>
+</html>

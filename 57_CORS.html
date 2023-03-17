@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    
+    <!-- 
+        integrity="해시값"
+        CDN의 JS 내용을 변조하여 사이트의 정보를 탈취하거나 악성 스크립트 실행을 막기 위한 해시값
+        CDN이 뚫리는 일은 매우 희박하지만 0%가 아닌 가능성은 막아야 함
+
+        crossorigin="anonymous"
+        CORS(Cross-Origin Resource Sharing : 교차 출처 리소스 공유) 요청에는 자격 증명 플래그를 설정하지 않음
+
+        referrerpolicy="no-referrer"
+        스크립트를 가져올 때 서버에 참조 정보를 보내지 않음
+
+
+        CORS(Cross-Origin Resource Sharing : 교차 출처 리소스 공유 정책) : 자바스크립트에서의 요청은 기본적으로 서로 다른 도메인에 대한 요청을 보안상 제한한다. 
+        브라우저는 기본으로 하나의 서버 연결만 허용되도록 설정되어 있는데 이를 어기면 오류가 발생함.
+        다른 출처의 어플리케이션과 소통하는 중에 해커의 CSRF(Cross-Site Request Forgery), XSS(Cross-Site Scripting) 공격을 당할 수 있어서 
+        브라우저에서 사전에 방지하도록 구현된 스펙임.
+        
+        Origin(출처) : Protocol   +  Host  +   Port
+                       https://www.domain.com:3000/
+                      console.log(location.origin)
+        (IE는 출처 비교시 Port 부분은 무시함. 보안에 취약함)
+                      
+        Same Origin Policy(SOP) : 동일한 출처에서만 리소스를 공유할 수 있음
+        Cross Origin Policy(COP) : 다른 출처의 리소스를 공유할 수 있음
+
+        해결책 
+        1. Allow CORS : Access-Control-Allow-Origin 크롬 확장프로그램 설치
+        2. heroku 프록시 서버 활용
+            1. 깃허브에서 cors-anywhere 리포지토리를 찾아 fork 한다.
+            2. Heroku에 배포하기
+                1) Heroku.com 에 회원가입(Sign Up)한 후 Log In 함
+                2) create new app 을 눌러 app을 생성
+                3) 깃허브 리포지토리 연결 및 배포 : GitHub Connected 선택한 후 검색(search)
+                4) cors-anywhere 선택하고 연결
+                5) master 선택하고 Deploy Branch 클릭
+            3. "https://앱이름.herokuapp.com" 을 api 주소 앞에 붙여넣기
+
+    -->
+
+</body>
+</html>

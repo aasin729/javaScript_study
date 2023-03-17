@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> display:flex </title>
+    <style>
+        /* 
+            블록성격의 자식들을 한줄로 정렬하기(flex정렬)
+            0. 부모한테 적용하는 속성
+                display:flex; 
+                justify-content:center; 
+                align-items:center;
+                flex-direction: column;
+                flex-wrap:wrap;
+
+                자식한테 적용하는 속성
+                flex-grow, flex-shrink, flex-basis,
+                oreder, z-index,
+                수직축일때는 부모한테 적용했던 align-items를 자식한테 align-self로 적용해도 됨
+
+            1. 부모한테 display:flex 속성 추가
+
+            2. 부모한테 여백이 있을때 자식들 정렬문제
+                (가로정렬) 
+                justify-content : flex-start(왼쪽, 기본값)
+                justify-content : flex-end(오른쪽)
+                justify-content : center(가운데)
+                justify-content : space-between(양끝에 여백없이 분배정렬)
+                justify-content : space-around(분배정렬, 양끝여백이 중간여백의 1/2)
+                justify-content : space-evenly(분배정렬, 양끝여백과 중간여백이 동일함)
+
+            3. 부모한테 여백이 있을때 자식들 확장문제
+                flex-grow : 1  ( 기본값 0)
+
+            4. 자식들이 부모공간을 넘치게 될때 자식들 축소문제 
+                flex-shrink : 1 ( 기본값 1)
+
+            5.  자식들의 넓이값 
+                flex-basis나 width 속성으로 넓이를 설정함
+
+                flex-basis 값이 0이면 자식넓이를 0으로 보고 
+                부모넓이를 flex-grow값의 비율에 따라 자식들 넓이를 새로 정함
+                margin값이 있거나, flex 속성이 없는 자식이 width를 갖고 있으면
+                부모넓이에서 그 width 값과 margin 값을 빼고 flex-gorw 값에 따라 넓이를 나눠 갖게 됨 
+
+            6. flex : 1 1 0 ->  축약형 flex : 1 
+
+            7. 부모의 높이를 세웠을때 자식들의 세로정렬문제 (자식들이 한줄일때)
+                align-items : stretch(부모높이에 맞춰짐, 기본값)
+                align-items : flex-start(맨위)
+                align-items : center (중간)
+                align-items : flex-end (맨아래)
+
+            8. 자식들이 두 줄(부모한테 flex-wrap:wrap 속성이 있을때) 이상일때 세로 정렬문제 
+                align-content : sapce-around(기본값, 분배정렬, 
+                                space-between, space-evenly)
+                align-items 속성이 stretch이면 여백이 안생겨서 분배정렬을 할 수 없음                           
+                       
+            9. 자식들을 두 줄 이상으로 정렬 
+                부모한테 flex-wrap:wrap ( nowrap 기본값)
+                자식들의 넓이를 상황에 맞게 설정해줌 
+
+                flex-wrap 속성은 나열된 요소들의 총 넓이가 부모 넓이 보다 클때, 이 요소들을 다음 줄에 이어서 나열해주는 기능
+                flex-wrap 속성을 사용하지 않으면 기본값 flex-wrap : nowrap 이 적용된다.   
+         */
+
+        * { margin:0; padding:0; box-sizing:border-box }
+        .container { 
+            max-width:1000px; margin:50px auto; background:yellow; 
+            height: 400px;
+            display: flex; 
+            /* justify-content: space-around;  */
+            align-items:center;
+            align-content: space-around;
+            flex-wrap: wrap;
+            
+        }
+        .container .item { border:1px solid #000;
+            /* width: 250px;  */
+            /* flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0; */
+            flex: 0 1 30%; 
+            margin-right: 10px;
+        }
+
+        .container .item:last-child {
+            margin-right: 0;
+        }
+
+        .depth1 { max-width: 500px; margin: 50px auto;
+            display: flex; background: green;
+            list-style: none; 
+            height: 500px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* justify-content: flex-start; */
+        }
+    
+        .depth1 li { border: 1px solid #f00; 
+            flex: 0 1 50px;
+          
+            /* flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 33.33%; */
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="item">hell hell</div>
+        <div class="item">abc2</div>
+        <div class="item">hel3</div>
+        <div class="item">hel4</div>
+        <div class="item">abc5</div>
+    </div>
+
+    <ul class="depth1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+
+
+
+
+</body>
+</html>

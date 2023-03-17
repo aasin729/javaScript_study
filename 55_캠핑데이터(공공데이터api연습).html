@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box;}
+        .box { max-width:800px; margin:0 auto;}
+        table { width:100%; border-collapse:collapse }
+        th, td { border:1px solid #000; padding:10px  }
+        col:nth-child(1) { width:15% }
+        col:nth-child(2) { width:15% }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <div class="category">
+            <select name="acc_sido" id="acc_sido"></select>
+            <select name="" id="acc_gugun"></select>
+            <button type="submit">조회</button>
+        </div>
+    </div>
+
+    
+    <script>
+        let sidoList = ""
+        let optionSido = ["서울시","경기도","강원도","충청북도","충청남도","경상북도","경상남도","전라북도","전라남도",]
+        optionSido.map(function(value, index){
+                sidoList += `<option value="${value}">${value}</option>`
+        })
+        $('#acc_sido').append(sidoList)
+
+        $('.category #acc_sido').on('change', function(){
+            let city = $(this).val()
+            usedata(city)
+        })
+
+         // 시가 선택되고 나서 군이 보이도록 
+
+         gugun('서울시') // 초기상태
+        $('#acc_sido').on('change', () => {
+           let tsido = $('#acc_sido option:selected').text()
+           gugun(tsido)
+        })
+
+        function gugun(tsido){
+           let newsido = sidos.filter((value) => value.type === tsido )
+           let newgugun = newsido[0].gugun
+           let gugunList = ""
+           newgugun.map((value)  => {
+                gugunList += `<option value="${value}">${value}</option>`
+           })
+           $('#acc_gugun').html(gugunList)
+        }
+
+        requestData()
+
+        $('.box form').on('submit', () => {
+            let sido = $('#acc_sido').val()
+            let gugun = $('#acc_gugun').val()
+            getData(sido, 1, gugun) 
+            return false
+        })
+
+        
+        var vdata = []
+        function requestData(){
+            $.ajax({
+                type:'GET',
+                url:`https://apis.data.go.kr/B551011/GoCamping/basedList?serviceKey=KN6vnczbtan4yZ0ghwoYVBbm%2FdRRL2RNH42hi%2B%2BJXgBjeKhFZkKq6RppUs073o%2B%2BIEBMYCbIVCPo04t8u%2BG3Eg%3D%3D&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest`,
+                data:{  }, 
+                dataType:'xml',
+                success : function(rdata){
+                    console.log(rdata)
+                    usedata('강원도')
+                },
+                error : function(xhr){
+                    alert(xhr.status + "/" + xhr.errorText)
+                }
+            })
+        }
+           
+        function usedata(data){
+            $('.box table').remove()
+            let newval = vdata.filter( value=>value.doNme === data )
+            console.log(newval)
+            let table = `<table>`
+            table += `<colgroup><col><col></colgroup>`
+            table += `<tr><th>지점</th><th>시</th><th>군</th><th>주소</th><th>소개</th></tr>`
+            newval.map(function(value){
+                table += `<tr>`
+                table += `<td>${value.facltNm}</td>`
+                table += `<td>${value.doNm}</td>`
+                table += `<td>${value.sigunguNm}</td>`
+                table += `<td>${value.addr1}</td>`
+                table += `<td>${value.slineIntro}</td>`
+                table += `</tr>`
+            })    
+            table += `</table>`
+            $('.box').append(table)
+        }
+
+
+    </script>
+
+</body>
+</html>

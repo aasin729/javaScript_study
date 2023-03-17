@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js" integrity="sha512-DHNepbIus9t4e6YoMBSJLwl+nnm0tIwMBonsQQ+W9NKN6gVVVbomJs9Ii3mQ+HzGZiU5FyJLdnAz9a63ZgZvTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+    <style>
+        /* 원형 그래프 스타일 */
+        * { margin:0; padding:0; box-sizing:border-box }
+        #sect2 article { 
+            margin:0 auto;
+            border:1px solid #000;
+            max-width:1000px;
+            display:flex; justify-content: center;  height:100%; align-content: center;
+            flex-wrap:wrap; 
+            padding:0; /* 박스의 안쪽 좌우여백을 사용해 자식들의 넓이를 줄임 */
+        }
+        #sect2 .container { flex:1 1 33.33%; margin:20px 0;  }
+        #sect2 .container .tit { font-size:20px; text-align:center; margin-bottom:20px  }
+        #sect2 .skills { position:relative; display:flex; justify-content: center;  }
+        #sect2 .pBox { width:100%; height:100%; line-height:150px; text-align:center;
+            position:absolute; top:0; left:50%; transform:translateX(-50%);
+            font-size:20px; color:#f00  }
+    </style>
+
+    
+    <div id="sect2">
+        <article class="article">
+            <div class="container">
+                <p class="tit">과목명</p>
+                <div class="skills">
+                    <span class="pBox">
+                        <span class="percent"></span>
+                        <span>%</span>
+                    </span>
+               </div>
+            </div>
+            <div class="container">
+                <p class="tit">과목명</p>
+                <div class="skills">
+                    <span class="pBox">
+                        <span class="percent"></span>
+                        <span>%</span>
+                    </span>
+               </div>
+            </div>
+            <div class="container">
+                <p class="tit">과목명</p>
+                <div class="skills">
+                    <span class="pBox">
+                        <span class="percent"></span>
+                        <span>%</span>
+                    </span>
+               </div>
+            </div>
+            <div class="container">
+                <p class="tit">과목명</p>
+                <div class="skills">
+                    <span class="pBox">
+                        <span class="percent"></span>
+                        <span>%</span>
+                    </span>
+               </div>
+            </div>
+            <div class="container">
+                <p class="tit">과목명</p>
+                <div class="skills">
+                    <span class="pBox">
+                        <span class="percent"></span>
+                        <span>%</span>
+                    </span>
+               </div>
+            </div>
+            <div class="container">
+                <p class="tit">과목명</p>
+                <div class="skills">
+                    <span class="pBox">
+                        <span class="percent"></span>
+                        <span>%</span>
+                    </span>
+               </div>
+            </div>
+        </article>
+    </div>
+
+
+
+    <script>
+
+        var arrChartColor = ['#e8670c', '#ff9e5a', '#ff710d', '#7f4f2d', '#cc5b0b', '#cc3a1a']; // 채워지는 색상 
+        var arrPercent = [90, 80, 70, 60, 50, 30]
+        $('.skills').each(function(idx){
+            $(this).attr({'data-percent':arrPercent[idx]})
+            $(this).easyPieChart({
+                animate: 2000,       // 진행시간
+                easing: 'easeOutBounce', // 속도함수
+                barColor: arrChartColor[idx],   // 채워지는 색상
+                trackColor: '#efefef', // 트색 색상
+                scaleColor: false, // 눈금선 색상
+                lineCap:'round', // 선의 끝 모양(butt, round, square)
+                lineWidth:20, // 선의 폭
+                size:180, // 원형차트의 크기
+                onStep: function(from, to, percent) {  
+                    $(this.el).find('.percent').text(Math.round(percent));
+                }
+            })
+        })  
+
+
+        // 아래 코드는 스크롤 이벤트에서 scrollTop()이나 scrollLeft() 값 구하는 것보다 아래쪽에 넣어줌
+        // 두번째 섹션이 절반정도 보이기 시작할때 원형그래프 그리게 함
+            if ( sct>=0 && sct<(sect2/2) ) {
+                $('#sect2').removeClass('on')
+                $('.skills').each(function(){
+                    $(this).data('easyPieChart').update(0);
+                })
+            } else {
+                if (!$('#sect2').hasClass('on')) {
+                    $('#sect2').addClass('on')
+                    $('.skills').each(function(idx){
+                        $(this).data('easyPieChart').enableAnimation().update(arrPercent[idx]);
+                    })
+                }
+            }
+
+
+    </script>
+</body>
+</html>

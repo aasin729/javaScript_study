@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box }
+        .box { max-width:500px; margin:0 auto }
+        table { width:100%; border-collapse:collapse }
+        th, td { border:1px solid #000; padding:10px  }
+        col:nth-child(1) { width:70% }
+        col:nth-child(2) { width:30% }
+        .pageNum { text-align:center }
+        .pageNum a { display:inline-block; padding:10px; margin:5px; background:blue; color:#fff }
+        .pageNum a.on { background:red }
+
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <form>
+            <select name="" id="acc_year"></select>
+            <select name="" id="acc_sido"></select>
+            <select name="" id="acc_gugun"></select>
+            <button type="submit">조회</button>
+        </form>
+        <!-- <table>
+            <colgroup>
+                <col>
+                <col>
+            </colgroup>
+            <tr>
+                <th>교통사고종류</th>
+                <th>사고건수</th>
+            </tr>
+            <tr>
+                <td>전체사고</td>
+                <td>3722건</td>
+            </tr>
+        </table> -->
+        <div class="pageNum"></div>
+    </div>
+
+    
+    <script type="module">
+        import sidos from './sidos.js'
+
+
+
+        let yearList = ""
+        for (let i=2010; i<=2021; i++) {
+            yearList += `<option value="${i}">${i}년</option>`
+        }
+        $('#acc_year').append(yearList)
+
+
+        let sidoList = ""
+        for (let i in sidos) {
+            sidoList += `<option value="${sidos[i].code}">${sidos[i].type}</option>`
+        }
+        $('#acc_sido').append(sidoList)
+
+
+        // 시가 선택되고 나서 군이 보이도록 
+
+        gugun('서울특별시') // 초기상태
+        $('#acc_sido').on('change', () => {
+           let tsido = $('#acc_sido option:selected').text()
+           gugun(tsido)
+        })
+
+        function gugun(tsido){
+           let newsido = sidos.filter((value) => value.type === tsido )
+           let newgugun = newsido[0].gugun
+           let gugunList = ""
+           newgugun.map((value)  => {
+                gugunList += `<option value="${value.code}">${value.name}</option>`
+           })
+           $('#acc_gugun').html(gugunList)
+        }
+
+
+        getData('2010', 1100, 1, '') // 2010년도 서울특별시 1페이지 전체 데이터 
+
+
+        $('.box form').on('submit', () => {
+            let year = $('#acc_year').val()
+            let sido = $('#acc_sido').val()
+            let gugun = $('#acc_gugun').val()
+            getData(year, sido, 1, gugun) 
+            return false
+        })
+
+        function getData(year, sido, page, gugun){
+            $.ajax({
+                type:'GET',
+                url:'https://apis.data.go.kr/B552061/lgStat/getRestLgStat?serviceKey=tsxcXyzF%2BXgzdg7s3iUG9BMSxzhXszdC68k9VquGWo9zq657lbmJPTjMzeWFsX5JhFXJvf8Yfgeh56Vou5hiog%3D%3D&type=json',
+                data: { searchYearCd:year, siDo:sido, pageNo:page, guGun:gugun, numOfRows:12 }, 
+                // 앞에있는 부분은 기술문서에 기재되어있기때문에 변경하면 안된다
+                dataType:'json',
+                success : (rdata) => {
+                    console.log(rdata)
+                    usedata(rdata, year, sido, page, gugun)
+                },
+                error : (xhr) => {
+                    alert(xhr.status + "/" + xhr.errorText)
+                }
+            })
+        }
+
+        // 실제 보여지는 데이터
+        function usedata(sdata, year, sido, page, gugun){
+            $('.box table').remove()
+            let pages = Math.ceil(sdata.totalCount/12)
+            let data = sdata.items.item
+            let table = `<table>`
+            table += `<colgroup><col><col></colgroup>`
+            table += `<tr><th>교통사고종류</th><th>사고건수</th></tr>`
+            data.map((value, index) => {
+                console.log(value, index)
+                table += `<tr>`
+                table += `<td>${value.acc_cl_nm}</td>`
+                table += `<td>${value.acc_cnt}</td>`
+                table += `</tr>`
+            })    
+            table += `</table>`
+            $('.pageNum').before(table)
+            let pageList = ""
+            for (let i=1; i<=pages; i++) {
+                if (i==page) {
+                    pageList += `<a href="${i}" class="on" data-year="${year}" data-sido="${sido}" data-gugun="${gugun}">${i}</a>`    
+                } else {
+                    pageList += `<a href="${i}" class="" data-year="${year}" data-sido="${sido}" data-gugun="${gugun}">${i}</a>`
+                }
+            }
+            $('.pageNum').html(pageList)
+        }
+
+        $('.pageNum').on('click', 'a', () => {
+            let page = $(this).attr('href')
+            let year = $(this).attr('data-year')
+            let sido = $(this).attr('data-sido')
+            let gugun = $(this).attr('data-gugun')
+            getData(year, sido, page, gugun)
+            return false
+        })
+
+    </script>
+
+</body>
+</html>

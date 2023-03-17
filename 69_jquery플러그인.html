@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+</head>
+<body>
+    
+    <!-- 
+        http://jqueryscript.net
+
+        http://codemyui.com/
+
+        마우스 포인터 효과
+        https://blog.naver.com/PostView.nhn?isHttpsRedirect=true&blogId=loveful&logNo=221483117853&parentCategoryNo=8&categoryNo=&viewDate=&isShowPopularPosts=true&from=search
+
+     -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box;}
+        #wrap{max-width: 800px; margin: 50px auto;}
+        ul {  list-style: none; overflow: hidden;}
+        li { border: 1px solid #000; padding: 10px;
+            float: left;
+        }
+        .grid { overflow: hidden;}
+        .grid-item { float: left; width: 33.33%;}
+        .grid-item img{ width: 100%;}
+    </style>
+
+
+    <div id="wrap">
+        <ul>
+            <li data-filter="*">전체</li>
+            <li data-filter=".pc">pc형</li>
+            <li data-filter=".res">반응형</li>
+            <li data-filter=".design">디자인</li>
+        </ul>
+    
+        <div class="grid">
+            <div class="grid-item pc">
+                <img src="./img/car1.jpg" alt="">
+            </div>
+            <div class="grid-item res">
+                <img src="./img/dish1.jpg" alt="">
+            </div>
+            <div class="grid-item design" >
+                <img src="./img/car2.jpg" alt="">
+            </div>
+            <div class="grid-item pc" >
+                <img src="./img/car1.jpg" alt="">
+            </div>
+            <div class="grid-item res">
+                <img src="./img/dish1.jpg" alt="">
+            </div>
+            <div class="grid-item design">
+                <img src="./img/car2.jpg" alt="">
+            </div>
+         </div>
+    </div>  
+
+
+    <script>
+        $('ul li').on('click', function(){
+           let filterValue = $(this).attr('data-filter')
+           $('.grid').isotope({
+                filter:filterValue,
+                layoutMode: 'masonry', // fitRows, masonry
+                itemSelector:'.grid-item'
+           })
+        })
+
+    </script>
+
+</body>
+</html>

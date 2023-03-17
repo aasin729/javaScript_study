@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <style>
+        table { width: 600px; margin: 0 auto; text-align: center;}
+        th, td { border: 1px solid #000}
+    </style>
+</head>
+<body>
+    
+    <!-- 
+
+        API : Application Programming Interface 
+        API는 한 프로그램이 다른 프로그램을 이용할 때 쓰는 인터페이스로 프로그램간의 커뮤니케이션을 담당
+        
+        -인터페이스
+        .물건을 조작하기 위한 디자인과 작동 방식
+        .키보드,마우스 리모컨처럼 물리적인 형태를 갖추고 동작을 인식할 수 있는 방식까지 포함됨
+        .사람을 위한 인터페이스 
+
+
+
+        REST(Representational State Transfer)란 자원을 이름으로 구분하여 해당 자원의 상태(정보)를 주고 받는 모든 것을 의미함. 
+        즉, 자원(resource)의 표현(representation)에 의한 상태 전달을 말함. 구체적인 의미로는 HTTP URI(Uniform Resource Identifier)를 통해 자원을 명시하고, 
+        HTTP Method(POST, GET, PUT, DELETE)를 통해 해당 자원에 대한 CRUD Operation을 적용하는 것을 의미함.
+        쉽게 말하자면 "URI와 HTTP 메소드를 이용해 객체화된 서비스에 접근하는 것"
+        REST CRUD Operation
+        Create : POST(생성)
+        Read : GET(조회)
+        Update : PUT(수정)
+        Delete : DELETE(삭제)
+
+        REST API : REST 기반으로 서비스 API를 구현한 것. 최근 OpenAPI(누구나 사용할 수 있도록 공개된 API : 구글맵, 공공데이터 등), 
+        마이크로서비스(하나의 큰 애플리케이션을 여러 개의 작은 애플리케이션으로 쪼개어 변경과 조합이 가능하도록 만든 아키텍처) 등을 
+        제공하는 업체 대부분은 REST API를 제공함
+
+        RESTful : REST라는 아키텍처를 구현하는 웹서비스를 나타내기 위해 사용되는 용어. REST API를 제공하는 웹서비스를 뜻함.
+
+        URL : Uniform Resource Locator(또는 web address)는 네트워크 상에서 자원이 어디 있는지를 알려주기 위한 규약
+        URI : Uniform Resource Identifier는 인터넷에 있는 자원을 나타내는 유일한 주소
+     -->
+
+     <!-- 지진데이터 관련 -->
+     <script>
+        $.ajax({
+            type : 'get',
+            url : 'https://apis.data.go.kr/1741000/TsunamiShelter3/getTsunamiShelter1List?serviceKey=KN6vnczbtan4yZ0ghwoYVBbm%2FdRRL2RNH42hi%2B%2BJXgBjeKhFZkKq6RppUs073o%2B%2BIEBMYCbIVCPo04t8u%2BG3Eg%3D%3D&pageNo=1&numOfRows=651&type=json',
+            dataType : 'json',
+            success : function(data){
+                    // 콘솔창에서 확인해보기 
+                    // console.log(data.TsunamiShelter[1].row)
+                    useData(data.TsunamiShelter[1].row)
+
+            },
+            error:function(xhr){
+                alert(xhr.status)
+            }
+        })
+
+        //콘솔창에 빠져나옴
+
+        function useData(data){
+            let table = `<table>`
+                table += `<tr><th>시도명</th><th>건축물종류</th></tr>`
+                
+            // *매개변수(data)는 function문 안에서만 사용됨
+            let newdata =  data.filter(function(value){
+                // console.log(value, index)
+                return value.sido_name === '경상북도'
+            })
+
+            newdata.map(function(value){
+                // 배열.map(function(value, index){ return })
+               // 배열요소 전체를 조작할때
+                table += `<tr>`
+                table += `<td>${value.sido_name}</td>`
+                table += `<td>${value.shel_nm}</td>`
+                table += `</tr>`
+            })
+            table += `</table>`
+            $('body').prepend(table)
+        }
+     </script>
+
+
+
+
+
+</body>
+</html>

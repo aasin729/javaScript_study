@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 
+        
+        모듈이란 전체 애플리케이션 중 일부를 독립된 코드로 분리해서 만들어 놓은 것이다.
+        유용한 기능을 모아둔 것으로 볼 수 있다.
+
+        외부 js 파일에서 module을 만들어 export 한 후에
+        필요한 곳에서 module이 있는 js파일을 import 하여 사용함 
+        import 문이 있는 script type은 module이어야 함 
+        <script type="module"></script>
+    
+     -->
+
+    <script type="module">
+        import { fnPlusNumbers , conHello } from './module.js'
+        let result = fnPlusNumbers(10,20)
+        console.log(result, conHello)
+    </script>
+
+    
+
+
+
+    
+</body>
+</html>

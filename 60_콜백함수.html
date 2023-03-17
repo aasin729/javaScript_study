@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 
+
+        여러개의 비동기요청을 동기식으로 처리하려면 콜백함수를 사용해야 함 
+        일처리가 많아지면 콜백헬에 빠지게 됨 , 그럴때는 promise 객체 사용 
+        코드의 가독성이 낮아지고 유지보수가 어렵게 됨 
+
+        콜백헬 은 비동기 처리 로직을 위해 콜백 함수를 연속해서 사용할 때 발생하는 문제
+     -->
+     
+     <script>
+
+        function a(callbackB){ // callbackB <- function b(){ }
+            console.log('a')
+            setTimeout(callbackB(c), 200)
+        
+        }
+
+        function b(callbackC){ // callbackC <- function c(){ }
+            console.log('b')
+            setTimeout(callbackC, 100)
+
+        }
+
+        function c(){
+            console.log('c')
+        }
+
+        //setTimeout(함수, 시간(ms)) 정해진 시간 후에 딱 한번 실행
+
+        // setTimeout(a, 300) 
+        // setTimeout(b, 200)
+        // setTimeout(c, 100)
+
+        // 개발자 도구에서 보면 c,b,a 순서대로 콘솔 창에 나타난다 
+
+        setTimeout(function(){
+             a(b)
+            // 괄호안에 들어 있는 b는 함수(function문)b이다.  
+        },300)
+
+
+     </script>
+    
+</body>
+</html>
